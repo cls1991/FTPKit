@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		867A1BCC1AFCFA5000CB64AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BCB1AFCFA5000CB64AF /* main.m */; };
+		867A1BCF1AFCFA5000CB64AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BCE1AFCFA5000CB64AF /* AppDelegate.m */; };
+		867A1BD21AFCFA5000CB64AF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BD11AFCFA5000CB64AF /* FirstViewController.m */; };
+		867A1BD51AFCFA5000CB64AF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BD41AFCFA5000CB64AF /* SecondViewController.m */; };
+		867A1BD81AFCFA5000CB64AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867A1BD61AFCFA5000CB64AF /* Main.storyboard */; };
+		867A1BDA1AFCFA5100CB64AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867A1BD91AFCFA5100CB64AF /* Images.xcassets */; };
+		867A1BDD1AFCFA5100CB64AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 867A1BDB1AFCFA5100CB64AF /* LaunchScreen.xib */; };
+		867A1BE91AFCFA5100CB64AF /* FTPKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BE81AFCFA5100CB64AF /* FTPKitTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		867A1BE31AFCFA5100CB64AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 867A1BBE1AFCFA5000CB64AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 867A1BC51AFCFA5000CB64AF;
+			remoteInfo = FTPKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		867A1BC61AFCFA5000CB64AF /* FTPKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTPKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		867A1BCA1AFCFA5000CB64AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867A1BCB1AFCFA5000CB64AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		867A1BCD1AFCFA5000CB64AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		867A1BCE1AFCFA5000CB64AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		867A1BD01AFCFA5000CB64AF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		867A1BD11AFCFA5000CB64AF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		867A1BD31AFCFA5000CB64AF /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		867A1BD41AFCFA5000CB64AF /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		867A1BD71AFCFA5000CB64AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		867A1BD91AFCFA5100CB64AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		867A1BDC1AFCFA5100CB64AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		867A1BE21AFCFA5100CB64AF /* FTPKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FTPKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		867A1BE71AFCFA5100CB64AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		867A1BE81AFCFA5100CB64AF /* FTPKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FTPKitTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		867A1BC31AFCFA5000CB64AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867A1BDF1AFCFA5100CB64AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		867A1BBD1AFCFA5000CB64AF = {
+			isa = PBXGroup;
+			children = (
+				867A1BC81AFCFA5000CB64AF /* FTPKit */,
+				867A1BE51AFCFA5100CB64AF /* FTPKitTests */,
+				867A1BC71AFCFA5000CB64AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		867A1BC71AFCFA5000CB64AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				867A1BC61AFCFA5000CB64AF /* FTPKit.app */,
+				867A1BE21AFCFA5100CB64AF /* FTPKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		867A1BC81AFCFA5000CB64AF /* FTPKit */ = {
+			isa = PBXGroup;
+			children = (
+				867A1BCD1AFCFA5000CB64AF /* AppDelegate.h */,
+				867A1BCE1AFCFA5000CB64AF /* AppDelegate.m */,
+				867A1BD01AFCFA5000CB64AF /* FirstViewController.h */,
+				867A1BD11AFCFA5000CB64AF /* FirstViewController.m */,
+				867A1BD31AFCFA5000CB64AF /* SecondViewController.h */,
+				867A1BD41AFCFA5000CB64AF /* SecondViewController.m */,
+				867A1BD61AFCFA5000CB64AF /* Main.storyboard */,
+				867A1BD91AFCFA5100CB64AF /* Images.xcassets */,
+				867A1BDB1AFCFA5100CB64AF /* LaunchScreen.xib */,
+				867A1BC91AFCFA5000CB64AF /* Supporting Files */,
+			);
+			path = FTPKit;
+			sourceTree = "<group>";
+		};
+		867A1BC91AFCFA5000CB64AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				867A1BCA1AFCFA5000CB64AF /* Info.plist */,
+				867A1BCB1AFCFA5000CB64AF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		867A1BE51AFCFA5100CB64AF /* FTPKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				867A1BE81AFCFA5100CB64AF /* FTPKitTests.m */,
+				867A1BE61AFCFA5100CB64AF /* Supporting Files */,
+			);
+			path = FTPKitTests;
+			sourceTree = "<group>";
+		};
+		867A1BE61AFCFA5100CB64AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				867A1BE71AFCFA5100CB64AF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		867A1BC51AFCFA5000CB64AF /* FTPKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 867A1BEC1AFCFA5100CB64AF /* Build configuration list for PBXNativeTarget "FTPKit" */;
+			buildPhases = (
+				867A1BC21AFCFA5000CB64AF /* Sources */,
+				867A1BC31AFCFA5000CB64AF /* Frameworks */,
+				867A1BC41AFCFA5000CB64AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FTPKit;
+			productName = FTPKit;
+			productReference = 867A1BC61AFCFA5000CB64AF /* FTPKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		867A1BE11AFCFA5100CB64AF /* FTPKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 867A1BEF1AFCFA5100CB64AF /* Build configuration list for PBXNativeTarget "FTPKitTests" */;
+			buildPhases = (
+				867A1BDE1AFCFA5100CB64AF /* Sources */,
+				867A1BDF1AFCFA5100CB64AF /* Frameworks */,
+				867A1BE01AFCFA5100CB64AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				867A1BE41AFCFA5100CB64AF /* PBXTargetDependency */,
+			);
+			name = FTPKitTests;
+			productName = FTPKitTests;
+			productReference = 867A1BE21AFCFA5100CB64AF /* FTPKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		867A1BBE1AFCFA5000CB64AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "陶正凯";
+				TargetAttributes = {
+					867A1BC51AFCFA5000CB64AF = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					867A1BE11AFCFA5100CB64AF = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 867A1BC51AFCFA5000CB64AF;
+					};
+				};
+			};
+			buildConfigurationList = 867A1BC11AFCFA5000CB64AF /* Build configuration list for PBXProject "FTPKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 867A1BBD1AFCFA5000CB64AF;
+			productRefGroup = 867A1BC71AFCFA5000CB64AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				867A1BC51AFCFA5000CB64AF /* FTPKit */,
+				867A1BE11AFCFA5100CB64AF /* FTPKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		867A1BC41AFCFA5000CB64AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867A1BD81AFCFA5000CB64AF /* Main.storyboard in Resources */,
+				867A1BDD1AFCFA5100CB64AF /* LaunchScreen.xib in Resources */,
+				867A1BDA1AFCFA5100CB64AF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867A1BE01AFCFA5100CB64AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		867A1BC21AFCFA5000CB64AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867A1BD51AFCFA5000CB64AF /* SecondViewController.m in Sources */,
+				867A1BCF1AFCFA5000CB64AF /* AppDelegate.m in Sources */,
+				867A1BD21AFCFA5000CB64AF /* FirstViewController.m in Sources */,
+				867A1BCC1AFCFA5000CB64AF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		867A1BDE1AFCFA5100CB64AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				867A1BE91AFCFA5100CB64AF /* FTPKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		867A1BE41AFCFA5100CB64AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 867A1BC51AFCFA5000CB64AF /* FTPKit */;
+			targetProxy = 867A1BE31AFCFA5100CB64AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		867A1BD61AFCFA5000CB64AF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				867A1BD71AFCFA5000CB64AF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		867A1BDB1AFCFA5100CB64AF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				867A1BDC1AFCFA5100CB64AF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		867A1BEA1AFCFA5100CB64AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		867A1BEB1AFCFA5100CB64AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		867A1BED1AFCFA5100CB64AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FTPKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		867A1BEE1AFCFA5100CB64AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FTPKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		867A1BF01AFCFA5100CB64AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FTPKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTPKit.app/FTPKit";
+			};
+			name = Debug;
+		};
+		867A1BF11AFCFA5100CB64AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FTPKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FTPKit.app/FTPKit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		867A1BC11AFCFA5000CB64AF /* Build configuration list for PBXProject "FTPKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867A1BEA1AFCFA5100CB64AF /* Debug */,
+				867A1BEB1AFCFA5100CB64AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		867A1BEC1AFCFA5100CB64AF /* Build configuration list for PBXNativeTarget "FTPKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867A1BED1AFCFA5100CB64AF /* Debug */,
+				867A1BEE1AFCFA5100CB64AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		867A1BEF1AFCFA5100CB64AF /* Build configuration list for PBXNativeTarget "FTPKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				867A1BF01AFCFA5100CB64AF /* Debug */,
+				867A1BF11AFCFA5100CB64AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 867A1BBE1AFCFA5000CB64AF /* Project object */;
+}
