@@ -46,7 +46,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: 切换到选中的server页面
     static NSString *myViewIndentifier = @"FTPShowFilesViewController";
     FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
     [showFilesViewController initWithString:[self.myFTPServers objectAtIndex:indexPath.row]];
