@@ -12,6 +12,7 @@
 
 @interface FTPNewViewController()
 @property (copy, nonatomic) NSArray *dataSourceList;
+@property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
@@ -27,16 +28,16 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FTPConfigTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
-    if (!cell) cell = [[FTPConfigTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTableIdentifier];
+    self.cell = [tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+    if (!self.cell) self.cell = [[FTPConfigTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTableIdentifier];
     
     NSDictionary *dataDict = [[self.dataSourceList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 
 //    NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
-    cell.labelValue = dataDict[@"name"];
-    cell.textValue = dataDict[@"value"];
+    self.cell.labelValue = dataDict[@"name"];
+    self.cell.textValue = dataDict[@"value"];
     
-    return cell;
+    return self.cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -90,7 +91,6 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     // tag值见nib布局文件的定义
     UITableView *tableView = (id)[self.view viewWithTag: 999];
     [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
-    
 }
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:true];

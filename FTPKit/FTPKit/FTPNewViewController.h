@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTPNewViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FTPNewViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @end
