@@ -9,9 +9,12 @@
 #import "FTPMainPageController.h"
 #import "FTPShowFilesViewController.h"
 #import "FTPNewViewController.h"
+#import "FTPServerModel.h"
+
 
 @interface FTPMainPageController ()
-@property (strong, nonatomic) NSArray *myFTPServers;
+@property (weak, nonatomic) IBOutlet UITableView *serverTableItems;
+@property (strong, nonatomic) NSMutableArray *myFTPServers;
 @end
 
 @implementation FTPMainPageController
@@ -19,8 +22,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.myFTPServers = [NSArray arrayWithObjects:@"asd", @"hello", nil];
+    self.myFTPServers = [[NSMutableArray alloc] initWithCapacity:10];
+    [self.myFTPServers addObject:@"hello"];
+    
+    NSLog(@"%@", self.myFTPServers);
+    // 添加消息监控
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:@"addFTPServer" object:nil];
 }
+
+- (void) reloadTableView: (NSNotification *) aNotification{
+    // 测试消息通知功能是否正常
+    FTPServerModel *model = [aNotification object];
+//    [model logObject];
+    [self.myFTPServers addObject:model.serverName];
+    // 刷新tableview的数据
+    [self.serverTableItems reloadData];
+}
+
 - (IBAction)clickTest:(UIBarButtonItem *)sender {
     static NSString *myViewIndentifier = @"FTPNewViewController";
     FTPNewViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
@@ -50,6 +68,10 @@
     FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
     [showFilesViewController initWithString:[self.myFTPServers objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:showFilesViewController animated:true];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

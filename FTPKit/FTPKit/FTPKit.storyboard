@@ -41,6 +41,9 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="serverTableItems" destination="0UQ-34-53k" id="mwg-PU-paM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZj-3B-GBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

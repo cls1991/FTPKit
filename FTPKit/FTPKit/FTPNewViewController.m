@@ -8,6 +8,7 @@
 
 #import "FTPNewViewController.h"
 #import "FTPConfigTableViewCell.h"
+#import "FTPServerModel.h"
 
 @interface FTPNewViewController()
 @property (copy, nonatomic) NSArray *dataSourceList;
@@ -95,6 +96,12 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     [self.navigationController popViewControllerAnimated:true];
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
+    FTPServerModel *model = [[FTPServerModel alloc] init];
+    model.serverName = @"86 Server";
+    model.serverAddress = @"192.168.1.100";
+    model.loginUsername = @"tzk";
+    model.loginPasswd = @"asd123";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:model];
     [self.navigationController popViewControllerAnimated:true];
 }
 
