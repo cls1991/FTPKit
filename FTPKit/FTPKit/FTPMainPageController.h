@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  SecondViewController.h
 //  FTPKit
 //
 //  Created by 陶正凯 on 15/5/8.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface FTPMainPageController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 
 @end
