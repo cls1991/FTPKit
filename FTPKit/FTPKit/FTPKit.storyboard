@@ -116,6 +116,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="ftpNewItemTableView" destination="kOt-bP-Jb8" id="m2z-zl-sGP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCm-aM-Sb7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

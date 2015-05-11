@@ -23,4 +23,20 @@
     NSLog(@"Login Passwd: %@", self.loginPasswd);
 }
 
+- (void) setValue:(NSString *)value matchWithKey:(NSString *)key {
+    if ([key isEqualToString: @"Display Name"]) {
+        self.serverName = value;
+    }
+    else if ([key isEqualToString: @"IP Address"]) {
+        self.serverAddress = value;
+    }
+    else if ([key isEqualToString: @"UserName"]) {
+        self.loginUsername = value;
+    }
+    else if ([key isEqualToString: @"Password"]) {
+        self.loginPasswd = value;
+    }
+    
+}
+
 @end

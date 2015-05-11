@@ -13,11 +13,19 @@
 @interface FTPNewViewController()
 @property (copy, nonatomic) NSArray *dataSourceList;
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
+@property (weak, nonatomic) IBOutlet UITableView *ftpNewItemTableView;
+@property (strong, nonatomic) FTPServerModel *dataModel;
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
 @implementation FTPNewViewController
 @synthesize dataSourceList;
+@synthesize dataModel = _dataModel;
+
+- (FTPServerModel *)dataModel {
+    if (!_dataModel) _dataModel = [[FTPServerModel alloc] init];
+    return _dataModel;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.dataSourceList count];
@@ -36,6 +44,9 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 //    NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
     self.cell.labelValue = dataDict[@"name"];
     self.cell.textValue = dataDict[@"value"];
+    [self.dataModel setValue:self.cell.textValue matchWithKey:self.cell.labelValue];
+    // 测试数据是否刷新
+    [self.dataModel logObject];
     
     return self.cell;
 }
@@ -87,7 +98,7 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    self.dataSourceList = @[@[@{@"name": @"Display Name", @"value": @"FTPServer"}, @{@"name": @"IP Address", @"value": @"192.168.1.100"}], @[@{@"name": @"IP Address", @"value": @"192.168.1.100"}]];
+    self.dataSourceList = @[@[@{@"name": @"Display Name", @"value": @"FTPServer"}, @{@"name": @"IP Address", @"value": @"192.168.1.100"}], @[@{@"name": @"UserName", @"value": @"tzk"}, @{@"name": @"Password", @"value": @"asd123"}]];
     // tag值见nib布局文件的定义
     UITableView *tableView = (id)[self.view viewWithTag: 999];
     [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
@@ -96,12 +107,14 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     [self.navigationController popViewControllerAnimated:true];
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
-    FTPServerModel *model = [[FTPServerModel alloc] init];
-    model.serverName = @"86 Server";
-    model.serverAddress = @"192.168.1.100";
-    model.loginUsername = @"tzk";
-    model.loginPasswd = @"asd123";
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:model];
+//    FTPServerModel *model = [[FTPServerModel alloc] init];
+//    model.serverName = @"86 Server";
+//    model.serverAddress = @"192.168.1.100";
+//    model.loginUsername = @"tzk";
+//    model.loginPasswd = @"asd123";
+    // 强制刷新tableview的datasource
+    [self.ftpNewItemTableView reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
     [self.navigationController popViewControllerAnimated:true];
 }
 

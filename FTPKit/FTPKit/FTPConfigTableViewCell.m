@@ -23,6 +23,9 @@
         
         CGRect fieldRect = CGRectMake(0, 28, 200, 15);
         _fieldText = [[UITextField alloc] initWithFrame:fieldRect];
+        _fieldText.clearsOnBeginEditing = NO;
+        _fieldText.textAlignment = NSTextAlignmentLeft;
+        _fieldText.returnKeyType = UIReturnKeyDone;
         [self.contentView addSubview:_fieldText];
     }
     

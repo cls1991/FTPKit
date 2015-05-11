@@ -18,6 +18,7 @@
 @property (copy, nonatomic) NSString *loginPasswd;
 
 - (void) logObject;
+- (void) setValue: (NSString *)value matchWithKey: (NSString *)key;
 @end
 
 #endif
