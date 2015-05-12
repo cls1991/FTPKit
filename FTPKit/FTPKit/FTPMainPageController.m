@@ -33,7 +33,7 @@
 - (void) reloadTableView: (NSNotification *) aNotification{
     // 测试消息通知功能是否正常
     FTPServerModel *model = [aNotification object];
-//    [model logObject];
+    [model logObject];
     [self.myFTPServers addObject:model.loginUsername];
     // 刷新tableview的数据
     [self.serverTableItems reloadData];

@@ -13,4 +13,5 @@
 @property (copy, nonatomic) NSString *textValue;
 
 - (void) setDelegate: (NSObject *)object;
+- (void) addTag: (NSInteger) tag;
 @end

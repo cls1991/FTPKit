@@ -11,10 +11,12 @@
 #import "FTPServerModel.h"
 
 @interface FTPNewViewController()
-@property (copy, nonatomic) NSMutableArray *dataSourceList;
+@property (strong, nonatomic) NSMutableArray *dataSourceList;
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UITableView *ftpNewItemTableView;
 @property (strong, nonatomic) FTPServerModel *dataModel;
+@property (nonatomic) NSInteger section;
+@property (nonatomic) NSInteger index;
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
@@ -39,15 +41,14 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     self.cell = [tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
     if (!self.cell) self.cell = [[FTPConfigTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTableIdentifier];
     
-    NSDictionary *dataDict = [[self.dataSourceList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-
-//    NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
+    NSMutableDictionary *dataDict = [[self.dataSourceList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     self.cell.labelValue = dataDict[@"name"];
     self.cell.textValue = dataDict[@"value"];
     [self.dataModel setValue:self.cell.textValue matchWithKey:self.cell.labelValue];
-    // 测试数据是否刷新
+    // 添加textfield代理
     [self.cell setDelegate:self];
-    [self.dataModel logObject];
+    // 添加Tag
+    [self.cell addTag:((indexPath.section + 1) * 10 + indexPath.row)];
     
     return self.cell;
 }
@@ -99,8 +100,7 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    NSArray *array = @[@[@{@"name": @"Display Name", @"value": @"FTPServer"}, @{@"name": @"IP Address", @"value": @"192.168.1.100"}], @[@{@"name": @"UserName", @"value": @"tzk"}, @{@"name": @"Password", @"value": @"asd123"}]];
-    self.dataSourceList = [[NSMutableArray alloc] initWithArray:array];
+    self.dataSourceList = [[NSMutableArray alloc] initWithCapacity:2];
     // tag值见nib布局文件的定义
     UITableView *tableView = (id)[self.view viewWithTag: 999];
     [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
@@ -109,14 +109,8 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     [self.navigationController popViewControllerAnimated:true];
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
-//    FTPServerModel *model = [[FTPServerModel alloc] init];
-//    model.serverName = @"86 Server";
-//    model.serverAddress = @"192.168.1.100";
-//    model.loginUsername = @"tzk";
-//    model.loginPasswd = @"asd123";
-    // 强制刷新tableview的datasource
-    [self.ftpNewItemTableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
+    // 添加逻辑保护
+    if ([self.dataModel checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
     [self.navigationController popViewControllerAnimated:true];
 }
 
@@ -126,8 +120,12 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"%@", textField.text);
-//    [self.dataSourceList addObject:@{@"name": @"Just Test", @"value": @"Just Test!!!"}];
+    // 返回TextField所属的cell
+    NSInteger section = textField.tag / 10 - 1;
+    NSInteger row = textField.tag % 10;
+    self.dataSourceList[section][row][@"value"] = textField.text;
+    // 更新数据源
+    [self.ftpNewItemTableView reloadData];
 }
 
 

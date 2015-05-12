@@ -19,6 +19,7 @@
 
 - (void) logObject;
 - (void) setValue: (NSString *)value matchWithKey: (NSString *)key;
+- (BOOL) checkValues;
 @end
 
 #endif

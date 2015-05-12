@@ -18,6 +18,10 @@
     if (object) _fieldText.delegate = object;
 }
 
+- (void) addTag:(NSInteger)tag {
+    if (tag != 0) _fieldText.tag = tag;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {

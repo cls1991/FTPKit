@@ -16,6 +16,11 @@
 
 @implementation FTPServerModel
 
+- (BOOL)checkValues {
+    if (self.serverName != nil && self.serverAddress != nil && self.loginUsername != nil && self.loginPasswd != nil) return YES;
+    return NO;
+}
+
 - (void) logObject {
     NSLog(@"ServerName: %@", self.serverName);
     NSLog(@"Server Address: %@", self.serverAddress);
