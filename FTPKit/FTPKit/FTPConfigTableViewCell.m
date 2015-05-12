@@ -14,6 +14,10 @@
     UITextField *_fieldText;
 }
 
+- (void) setDelegate:(NSObject *)object {
+    if (object) _fieldText.delegate = object;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {

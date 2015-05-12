@@ -11,7 +11,7 @@
 #import "FTPServerModel.h"
 
 @interface FTPNewViewController()
-@property (copy, nonatomic) NSArray *dataSourceList;
+@property (copy, nonatomic) NSMutableArray *dataSourceList;
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UITableView *ftpNewItemTableView;
 @property (strong, nonatomic) FTPServerModel *dataModel;
@@ -46,6 +46,7 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     self.cell.textValue = dataDict[@"value"];
     [self.dataModel setValue:self.cell.textValue matchWithKey:self.cell.labelValue];
     // 测试数据是否刷新
+    [self.cell setDelegate:self];
     [self.dataModel logObject];
     
     return self.cell;
@@ -98,7 +99,8 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    self.dataSourceList = @[@[@{@"name": @"Display Name", @"value": @"FTPServer"}, @{@"name": @"IP Address", @"value": @"192.168.1.100"}], @[@{@"name": @"UserName", @"value": @"tzk"}, @{@"name": @"Password", @"value": @"asd123"}]];
+    NSArray *array = @[@[@{@"name": @"Display Name", @"value": @"FTPServer"}, @{@"name": @"IP Address", @"value": @"192.168.1.100"}], @[@{@"name": @"UserName", @"value": @"tzk"}, @{@"name": @"Password", @"value": @"asd123"}]];
+    self.dataSourceList = [[NSMutableArray alloc] initWithArray:array];
     // tag值见nib布局文件的定义
     UITableView *tableView = (id)[self.view viewWithTag: 999];
     [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
@@ -117,5 +119,16 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
     [self.navigationController popViewControllerAnimated:true];
 }
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"%@", textField.text);
+//    [self.dataSourceList addObject:@{@"name": @"Just Test", @"value": @"Just Test!!!"}];
+}
+
 
 @end

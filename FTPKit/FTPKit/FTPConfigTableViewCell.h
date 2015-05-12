@@ -11,4 +11,6 @@
 @interface FTPConfigTableViewCell : UITableViewCell
 @property (copy, nonatomic) NSString *labelValue;
 @property (copy, nonatomic) NSString *textValue;
+
+- (void) setDelegate: (NSObject *)object;
 @end
