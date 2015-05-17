@@ -10,22 +10,26 @@
 #import "FTPShowFilesViewController.h"
 #import "FTPNewViewController.h"
 #import "FTPServerModel.h"
+#import "FTPServersListViewCell.h"
 
 
 @interface FTPMainPageController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *serverTableItems;
 @property (strong, nonatomic) NSMutableArray *myFTPServers;
 @end
 
+static NSString *cellTableIdentifier = @"cellTableIdentifier";
 @implementation FTPMainPageController
 @synthesize myFTPServers;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myFTPServers = [[NSMutableArray alloc] initWithCapacity:10];
-    [self.myFTPServers addObject:@"hello"];
+    // 加载自定义cell
+    UITableView *tableView = (id)[self.view viewWithTag: 666];
+    [tableView registerClass:[FTPServersListViewCell class] forCellReuseIdentifier:cellTableIdentifier];
     
-    NSLog(@"%@", self.myFTPServers);
     // 添加消息监控
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:@"addFTPServer" object:nil];
 }
@@ -33,8 +37,8 @@
 - (void) reloadTableView: (NSNotification *) aNotification{
     // 测试消息通知功能是否正常
     FTPServerModel *model = [aNotification object];
-    [model logObject];
-    [self.myFTPServers addObject:model.loginUsername];
+//    [model logObject];
+    [self.myFTPServers addObject:model];
     // 刷新tableview的数据
     [self.serverTableItems reloadData];
 }
@@ -55,12 +59,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *ftpServersItem = @"serversItem";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ftpServersItem];
-    if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ftpServersItem];
-    cell.textLabel.text = [self.myFTPServers objectAtIndex:indexPath.row];
+    FTPServersListViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
+    if (!myCell) myCell = [[FTPServersListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTableIdentifier];
+    FTPServerModel *modelData = [self.myFTPServers objectAtIndex:indexPath.row];
+    myCell.labelValue1 = modelData.serverAddress;
+    myCell.labelValue2 = modelData.serverName;
 
-    return cell;
+    return myCell;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {

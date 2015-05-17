@@ -15,8 +15,7 @@
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UITableView *ftpNewItemTableView;
 @property (strong, nonatomic) FTPServerModel *dataModel;
-@property (nonatomic) NSInteger section;
-@property (nonatomic) NSInteger index;
+
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
@@ -104,6 +103,11 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     // tag值见nib布局文件的定义
     UITableView *tableView = (id)[self.view viewWithTag: 999];
     [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
+    
+    // 从plist文件加载资源
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FTPDefaultItems" ofType:@"plist"];
+    NSMutableArray *dataArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    self.dataSourceList = dataArray;
 }
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:true];
