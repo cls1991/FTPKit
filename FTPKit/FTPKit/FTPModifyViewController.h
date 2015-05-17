@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTPServerModel.h"
+
 
 @interface FTPModifyViewController : UIViewController
 
+- (void) initWithModelData: (FTPServerModel *) modelData;
 @end

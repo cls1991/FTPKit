@@ -124,6 +124,35 @@
             </objects>
             <point key="canvasLocation" x="3110.5" y="-1996.5"/>
         </scene>
+        <!--FTPModifyServer-->
+        <scene sceneID="PzL-9i-dVK">
+            <objects>
+                <viewController id="cRu-wR-swC" userLabel="FTPModifyServer" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PJJ-Ha-geK"/>
+                        <viewControllerLayoutGuide type="bottom" id="IRh-qI-bMb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YQO-Xa-vRF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="a2a-r7-olD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="3Fd-oR-fpa" userLabel="FTPModifyServer">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Y9G-un-fCs"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rJc-pB-YxM"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTc-g4-mJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3534.5" y="-1996.5"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="d6h-3R-GHi">
             <objects>

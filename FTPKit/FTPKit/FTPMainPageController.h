@@ -10,6 +10,6 @@
 
 @interface FTPMainPageController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
-//- (void) imageTapped:(UIGestureRecognizer *)guesture;
+- (void) imageTapped:(UIGestureRecognizer *)guesture;
 @end
 

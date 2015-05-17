@@ -11,6 +11,7 @@
 #import "FTPNewViewController.h"
 #import "FTPServerModel.h"
 #import "FTPServersListViewCell.h"
+#import "FTPModifyViewController.h"
 
 
 @interface FTPMainPageController ()
@@ -64,7 +65,11 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     FTPServerModel *modelData = [self.myFTPServers objectAtIndex:indexPath.row];
     myCell.labelValue1 = modelData.serverAddress;
     myCell.labelValue2 = modelData.serverName;
-
+    myCell.imageName2 = @"modify.png";
+    [myCell addTag:indexPath.row];
+    UITapGestureRecognizer *guesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    [myCell addGestureRecognizer:guesture];
+    
     return myCell;
 }
 
@@ -73,6 +78,12 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
     [showFilesViewController initWithString:[self.myFTPServers objectAtIndex:indexPath.row]];
     [self.navigationController pushViewController:showFilesViewController animated:true];
+}
+
+- (void)imageTapped:(UIGestureRecognizer *)guesture {
+    static NSString *myViewIndentifier = @"FTPModifyViewController";
+    FTPModifyViewController *modifyViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
+    [self.navigationController pushViewController:modifyViewController animated:true];
 }
 
 - (void) dealloc {

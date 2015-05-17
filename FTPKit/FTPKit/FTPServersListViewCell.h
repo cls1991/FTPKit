@@ -15,4 +15,5 @@
 @property (copy, nonatomic) NSString *imageName2;
 
 - (void) addTapGuestureRecongnizer: (UITapGestureRecognizer *)tapGuesture;
+- (void) addTag: (NSInteger) tag;
 @end

@@ -41,6 +41,10 @@
     self.imageView.userInteractionEnabled = YES;
 }
 
+- (void)addTag:(NSInteger)tag {
+    if (tag > 0)    self.imageView.tag = tag;
+}
+
 - (void) setLabelValue1:(NSString *)labelValue1 {
     if (![labelValue1 isEqualToString:_labelValue1]) {
         _labelValue1 = [labelValue1 copy];
