@@ -74,10 +74,11 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *myViewIndentifier = @"FTPShowFilesViewController";
-    FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
-    [showFilesViewController initWithString:[self.myFTPServers objectAtIndex:indexPath.row]];
-    [self.navigationController pushViewController:showFilesViewController animated:true];
+//    static NSString *myViewIndentifier = @"FTPShowFilesViewController";
+//    FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
+//    [showFilesViewController initWithString:[self.myFTPServers objectAtIndex:indexPath.row]];
+//    [self.navigationController pushViewController:showFilesViewController animated:true];
+    NSLog(@"shjasja");
 }
 
 - (void)imageTapped:(UIGestureRecognizer *)guesture {

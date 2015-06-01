@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BPx-dd-88X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BPx-dd-88X">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--FTPKit-->
@@ -127,7 +127,7 @@
         <!--FTPModifyServer-->
         <scene sceneID="PzL-9i-dVK">
             <objects>
-                <viewController id="cRu-wR-swC" userLabel="FTPModifyServer" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FTPModifyViewController" id="cRu-wR-swC" userLabel="FTPModifyServer" customClass="FTPModifyViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PJJ-Ha-geK"/>
                         <viewControllerLayoutGuide type="bottom" id="IRh-qI-bMb"/>
@@ -144,8 +144,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="3Fd-oR-fpa" userLabel="FTPModifyServer">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Y9G-un-fCs"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rJc-pB-YxM"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Y9G-un-fCs">
+                            <connections>
+                                <action selector="cancelAction:" destination="cRu-wR-swC" id="Rh4-l8-Lht"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rJc-pB-YxM">
+                            <connections>
+                                <action selector="doneAction:" destination="cRu-wR-swC" id="ckm-lw-7eO"/>
+                            </connections>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="leftBarButtonItem" destination="Y9G-un-fCs" id="zLq-Y9-vcK"/>
+                            <outlet property="rightBarButtonItem" destination="rJc-pB-YxM" id="RSq-0c-ddc"/>
+                        </connections>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
