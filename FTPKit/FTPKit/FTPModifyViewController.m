@@ -14,28 +14,32 @@
 @property (strong, nonatomic) NSMutableArray *dataSourceList;
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UITableView *ftpModifyItemTableView;
-@property (strong, nonatomic) FTPServerModel *dataModel;
+@property (strong, nonatomic) FTPServerModel *modelData;
 
 @end
 
-static NSString *cellTableIdentifier = @"cellTableIdentifier";
+static NSString *tableCellIdentifier = @"tableCellIdentifier";
 @implementation FTPModifyViewController
 @synthesize dataSourceList;
-@synthesize dataModel = _dataModel;
+@synthesize modelData = _modelData;
 
-- (FTPServerModel *)dataModel {
-    if (!_dataModel) _dataModel = [[FTPServerModel alloc] init];
-    return _dataModel;
+- (FTPServerModel *)modelData {
+    if (!_modelData) _modelData = [[FTPServerModel alloc] init];
+    return _modelData;
 }
 
 - (void)initWithModelData:(FTPServerModel *)modelData {
+    // TODO 解析传递的模型数据
     self.dataSourceList = [[NSMutableArray alloc] initWithCapacity:2];
     // 从plist文件加载资源
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FTPDefaultItems" ofType:@"plist"];
     NSMutableArray *dataArray = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    for (NSMutableArray *array in dataArray) {
+        for (NSMutableDictionary *dict in array) {
+            [dict setValue:[modelData getValue:dict[@"name"]] forKey:@"value"];
+        }
+    }
     self.dataSourceList = dataArray;
-    // 解析数据
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -47,13 +51,13 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.cell = [tableView dequeueReusableCellWithIdentifier:cellTableIdentifier];
-    if (!self.cell) self.cell = [[FTPConfigTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellTableIdentifier];
+    self.cell = [tableView dequeueReusableCellWithIdentifier:tableCellIdentifier];
+    if (!self.cell) self.cell = [[FTPConfigTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:tableCellIdentifier];
     
     NSMutableDictionary *dataDict = [[self.dataSourceList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     self.cell.labelValue = dataDict[@"name"];
     self.cell.textValue = dataDict[@"value"];
-    [self.dataModel setValue:self.cell.textValue matchWithKey:self.cell.labelValue];
+    [self.modelData setValue:self.cell.textValue matchWithKey:self.cell.labelValue];
     // 添加textfield代理
     [self.cell setDelegate:self];
     // 添加Tag
@@ -110,15 +114,15 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 - (void) viewDidLoad {
     [super viewDidLoad];
     // tag值见nib布局文件的定义
-    UITableView *tableView = (id)[self.view viewWithTag: 999];
-    [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
+    UITableView *tableView = (id)[self.view viewWithTag: 9999];
+    [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:tableCellIdentifier];
 }
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:true];
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
     // 添加逻辑保护
-    if ([self.dataModel checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
+    if ([self.modelData checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.modelData];
     [self.navigationController popViewControllerAnimated:true];
 }
 

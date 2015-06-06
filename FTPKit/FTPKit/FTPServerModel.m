@@ -41,7 +41,40 @@
     else if ([key isEqualToString: @"Password"]) {
         self.loginPasswd = value;
     }
-    
 }
 
+- (NSString *) getValue:(NSString *)key {
+    if ([key isEqualToString:@"Display Name"]) {
+        return self.serverName;
+    }
+    else if ([key isEqualToString:@"IP Address"]) {
+        return self.serverAddress;
+    }
+    else if ([key isEqualToString:@"UserName"]) {
+        return self.loginUsername;
+    }
+    else if ([key isEqualToString:@"Password"]) {
+        return self.loginPasswd;
+    }
+    return nil;
+}
+
+- (NSMutableArray *) wrapData {
+    NSMutableArray *array = nil;
+    NSMutableDictionary *dict = nil;
+    NSArray *dataTemplate = @[@[@"Display Name", @"IP Address"], @[@"UserName", @"Password"]];
+    NSArray *keyTemplate = @[@"name", @"value"];
+    NSMutableArray *dataResult = [[NSMutableArray alloc] initWithCapacity:2];
+    for (int i=0; i<2; i++) {
+        array = [[NSMutableArray alloc] initWithCapacity:2];
+        for (int j=0; j<2; j++) {
+            dict = [[NSMutableDictionary alloc] initWithCapacity:2];
+            [dict setObject:[self getValue:dataTemplate[i][j]] forKey:keyTemplate[j]];
+            [array addObject:dict];
+        }
+        [dataResult addObject:array];
+    }
+    
+    return dataResult;
+}
 @end

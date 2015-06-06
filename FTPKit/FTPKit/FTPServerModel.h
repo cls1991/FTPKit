@@ -19,7 +19,9 @@
 
 - (void) logObject;
 - (void) setValue: (NSString *)value matchWithKey: (NSString *)key;
+- (NSString *) getValue : (NSString *)key;
 - (BOOL) checkValues;
+- (NSMutableArray *) wrapData;
 @end
 
 #endif

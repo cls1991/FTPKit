@@ -31,7 +31,7 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    CGRect rect3 = CGRectMake(300, 10, 40, 40);
+    CGRect rect3 = CGRectMake(300, 10, 30, 30);
     [self.imageView setFrame:rect3];
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
