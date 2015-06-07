@@ -32,25 +32,20 @@ static NSString *dataPlist = @"FTPServerData.plist";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myFTPServers = [[NSMutableArray alloc] initWithCapacity:10];
-//    if ([self isFileExist:dataPlist]) {
-//        // 测试文件是否存在
-//        NSLog(@"kkk:::");
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
-//        NSString *plistPath = [paths objectAtIndex:0];
-//        NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
-//        self.myFTPServers = [[NSMutableArray alloc] initWithContentsOfFile:fileName];
-//    }
-    // TODO : write to plist file
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES);
-    NSString *plistPath = [paths objectAtIndex:0];
-    NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
-    // 解析modelData
-    //        NSMutableArray *data = [modelData wrapData];
-    NSLog(@"zzz:::");
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:fileName];
-    [data setObject:@"sssasa" forKey:@"taozhengkai"];
-    [data writeToFile:fileName atomically:YES];
-    NSLog(@"%@----%@", fileName, [[NSMutableDictionary alloc] initWithContentsOfFile:fileName]);
+    if ([self isFileExist:dataPlist]) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *plistPath = [paths objectAtIndex:0];
+        NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
+        NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:fileName];
+        FTPServerModel *model = [[FTPServerModel alloc] init];
+        for (NSMutableArray *array in data) {
+            for (NSMutableDictionary *dict in array) {
+                [model setValue:dict[@"value"] matchWithKey:dict[@"name"]];
+            }
+        }
+        
+        [self.myFTPServers addObject:model];
+    }
     // 加载自定义cell
     UITableView *tableView = (id)[self.view viewWithTag: 666];
     [tableView registerClass:[FTPServersListViewCell class] forCellReuseIdentifier:cellTableIdentifier];
@@ -61,7 +56,13 @@ static NSString *dataPlist = @"FTPServerData.plist";
 
 - (BOOL) isFileExist: (NSString *)filePath {
     NSFileManager *manager = [NSFileManager defaultManager];
-    return [manager fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:dataPlist]];
+    BOOL flag = NO;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = paths[0];
+    NSString *fileName = [documentDirectory stringByAppendingPathComponent:filePath];
+    flag = [manager fileExistsAtPath:fileName];
+    
+    return flag;
 }
 - (void) customeAddObject: (FTPServerModel *)modelData {
     NSString *serverName = modelData.serverName;
@@ -75,7 +76,14 @@ static NSString *dataPlist = @"FTPServerData.plist";
     // 替换当前的数据, 写入文件保存
     if (index > -1) {
         [self.myFTPServers removeObjectAtIndex:index];
-        
+        // TODO : write to plist file
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *plistPath = [paths objectAtIndex:0];
+        NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
+        // 解析modelData
+        NSArray *data = [modelData wrapData];
+//        NSLog(@"data::%@", data);
+        [data writeToFile:fileName atomically:YES];
     }
     [self.myFTPServers addObject:modelData];
 }
@@ -134,6 +142,7 @@ static NSString *dataPlist = @"FTPServerData.plist";
     static NSString *myViewIndentifier = @"FTPModifyViewController";
     FTPModifyViewController *modifyViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
     [modifyViewController initWithModelData:model];
+    [modifyViewController setTitle:model.serverName];
     [self.navigationController pushViewController:modifyViewController animated:true];
 }
 

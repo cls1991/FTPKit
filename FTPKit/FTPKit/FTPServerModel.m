@@ -69,7 +69,8 @@
         array = [[NSMutableArray alloc] initWithCapacity:2];
         for (int j=0; j<2; j++) {
             dict = [[NSMutableDictionary alloc] initWithCapacity:2];
-            [dict setObject:[self getValue:dataTemplate[i][j]] forKey:keyTemplate[j]];
+            [dict setObject:dataTemplate[i][j] forKey:keyTemplate[0]];
+            [dict setObject:[self getValue:dataTemplate[i][j]] forKey:keyTemplate[1]];
             [array addObject:dict];
         }
         [dataResult addObject:array];
