@@ -809,6 +809,8 @@
     const char *user = [server.username cStringUsingEncoding:NSUTF8StringEncoding];
     const char *pass = [server.password cStringUsingEncoding:NSUTF8StringEncoding];
     NSString* wdirs = [server.destination fmdir];
+    
+//    NSLog(@"%s:%s:%s", host, user, pass);
     const char *wdir;
     BOOL chdir = NO;
     if (wdirs && wdirs.length > 0) {
