@@ -122,7 +122,7 @@ static NSString *tableCellIdentifier = @"tableCellIdentifier";
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
     // 添加逻辑保护
-    if ([self.modelData checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.modelData];
+    if ([self.modelData checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"modifyFTPServer" object:self.modelData];
     [self.navigationController popViewControllerAnimated:true];
 }
 

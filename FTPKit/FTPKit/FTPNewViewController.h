@@ -10,4 +10,5 @@
 
 @interface FTPNewViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
+-(void) initWithData: (NSArray *)data;
 @end

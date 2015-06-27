@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *serverTableItems;
 @property (strong, nonatomic) NSMutableArray *myFTPServers;
+@property NSInteger index;
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
@@ -31,27 +32,31 @@ static NSString *dataPlist = @"FTPServerData.plist";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.index = -1;
     self.myFTPServers = [[NSMutableArray alloc] initWithCapacity:10];
     if ([self isFileExist:dataPlist]) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *plistPath = [paths objectAtIndex:0];
         NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
         NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:fileName];
-        FTPServerModel *model = [[FTPServerModel alloc] init];
+        FTPServerModel *model = nil;
         for (NSMutableArray *array in data) {
-            for (NSMutableDictionary *dict in array) {
-                [model setValue:dict[@"value"] matchWithKey:dict[@"name"]];
+            model = [[FTPServerModel alloc] init];
+            for (NSMutableArray *item in array) {
+                for (NSMutableDictionary *dict in item) {
+                    [model setValue:dict[@"value"] matchWithKey:dict[@"name"]];
+                }
             }
+            [self.myFTPServers addObject:model];
         }
-        
-        [self.myFTPServers addObject:model];
     }
     // 加载自定义cell
     UITableView *tableView = (id)[self.view viewWithTag: 666];
     [tableView registerClass:[FTPServersListViewCell class] forCellReuseIdentifier:cellTableIdentifier];
     
     // 添加消息监控
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView:) name:@"addFTPServer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addServer:) name:@"addFTPServer" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modifyServer:) name:@"modifyFTPServer" object:nil];
 }
 
 - (BOOL) isFileExist: (NSString *)filePath {
@@ -64,42 +69,64 @@ static NSString *dataPlist = @"FTPServerData.plist";
     
     return flag;
 }
+/*
+ 将全部的数据同步到文件
+ */
+- (void) saveDataToFile {
+    NSString *dir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filePath = [dir stringByAppendingPathComponent:dataPlist];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithCapacity:[self.myFTPServers count]];
+    for (FTPServerModel *serverModel in self.myFTPServers) {
+        NSArray *data = [serverModel wrapData];
+        [mutableArray addObject:data];
+    }
+    [[mutableArray copy] writeToFile:filePath atomically:YES];
+}
 - (void) customeAddObject: (FTPServerModel *)modelData {
-    NSString *serverName = modelData.serverName;
-    NSInteger index = -1;
-    for (FTPServerModel *model in self.myFTPServers) {
-        if ([serverName isEqualToString:model.serverName]) {
-            index = [self.myFTPServers indexOfObject:model];
-            break;
-        }
-    }
-    // 替换当前的数据, 写入文件保存
-    if (index > -1) {
-        [self.myFTPServers removeObjectAtIndex:index];
-        // TODO : write to plist file
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *plistPath = [paths objectAtIndex:0];
-        NSString *fileName = [plistPath stringByAppendingPathComponent:dataPlist];
-        // 解析modelData
-        NSArray *data = [modelData wrapData];
-//        NSLog(@"data::%@", data);
-        [data writeToFile:fileName atomically:YES];
-    }
     [self.myFTPServers addObject:modelData];
+    [self saveDataToFile];
+}
+-(void) modifyObject: (FTPServerModel *)modelData {
+    if (self.index != -1) {
+        [self.myFTPServers replaceObjectAtIndex:self.index withObject:modelData];
+    }
 }
 
-- (void) reloadTableView: (NSNotification *) aNotification{
+- (void) addServer: (NSNotification *) aNotification{
     // 测试消息通知功能是否正常
     FTPServerModel *model = [aNotification object];
-//    [model logObject];
+    //    [model logObject];
     [self customeAddObject:model];
+    [self reloadTableView];
+}
+
+- (void) modifyServer: (NSNotification *) aNotification{
+    // 测试消息通知功能是否正常
+    FTPServerModel *model = [aNotification object];
+    [model logObject];
+    [self modifyObject:model];
+    [self reloadTableView];
+}
+
+- (void) reloadTableView {
     // 刷新tableview的数据
     [self.serverTableItems reloadData];
+}
+
+- (NSArray *) getServerNames{
+    // 获取当前所有服务器的名称列表, 用于校验FTPNewViewController的名称是否重复
+        NSMutableArray *nameData = [[NSMutableArray alloc] initWithCapacity:20];
+        for (FTPServerModel *serverModel in self.myFTPServers) {
+            [nameData addObject:serverModel.serverName];
+        }
+    
+    return [nameData copy];
 }
 
 - (IBAction)clickTest:(UIBarButtonItem *)sender {
     static NSString *myViewIndentifier = @"FTPNewViewController";
     FTPNewViewController *newViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
+    [newViewController initWithData:[self getServerNames]];
     [self.navigationController pushViewController:newViewController animated:true];
 }
 
@@ -138,6 +165,8 @@ static NSString *dataPlist = @"FTPServerData.plist";
     CGPoint location = [guesture locationInView:self.serverTableItems];
     NSIndexPath *indexPath = [self.serverTableItems indexPathForRowAtPoint:location];
     if (!indexPath) return;
+    self.index = indexPath.row;
+    NSLog(@"zz--%ld", (long)self.index);
     FTPServerModel *model = [self.myFTPServers objectAtIndex:indexPath.row];
     static NSString *myViewIndentifier = @"FTPModifyViewController";
     FTPModifyViewController *modifyViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];

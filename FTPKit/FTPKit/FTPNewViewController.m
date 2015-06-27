@@ -15,7 +15,8 @@
 @property (strong, nonatomic) FTPConfigTableViewCell *cell;
 @property (weak, nonatomic) IBOutlet UITableView *ftpNewItemTableView;
 @property (strong, nonatomic) FTPServerModel *dataModel;
-
+@property (strong, nonatomic) NSArray *nameData;
+-(BOOL) checkNameExists: (NSString *)serverName;
 @end
 
 static NSString *cellTableIdentifier = @"cellTableIdentifier";
@@ -27,7 +28,9 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     if (!_dataModel) _dataModel = [[FTPServerModel alloc] init];
     return _dataModel;
 }
-
+- (void) initWithData:(NSArray *)data{
+    self.nameData = data;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.dataSourceList count];
 }
@@ -96,7 +99,15 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     }
 }
 
-
+-(BOOL)checkNameExists:(NSString *)serverName{
+    for (NSString *name in self.nameData) {
+        if ([serverName isEqualToString:name]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.dataSourceList = [[NSMutableArray alloc] initWithCapacity:2];
@@ -113,8 +124,9 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
     [self.navigationController popViewControllerAnimated:true];
 }
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
-    // 添加逻辑保护
-    if ([self.dataModel checkValues]) [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
+    // 添加逻辑保护, 数据域为空或者服务器名称已存在, 提示异常
+    if (![self.dataModel checkValues] || [self checkNameExists:self.dataModel.serverName]) return;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addFTPServer" object:self.dataModel];
     [self.navigationController popViewControllerAnimated:true];
 }
 

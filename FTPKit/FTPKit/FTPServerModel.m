@@ -76,6 +76,6 @@
         [dataResult addObject:array];
     }
     
-    return dataResult;
+    return [dataResult copy];
 }
 @end
