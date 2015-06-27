@@ -208,7 +208,6 @@
                     entry[(id)kCFFTPResourceName] = [[NSString alloc] initWithData:[nameEntry dataUsingEncoding:NSMacOSRomanStringEncoding allowLossyConversion:YES]
                                                                           encoding:NSUTF8StringEncoding];
                 }
-                
                 [listingArray addObject:entry];
             }
             offset += bytesConsumed;
@@ -279,6 +278,7 @@
     fileSizeProcessed = 0;
     
     NSURL * finalURL = [[server.destination ftpURLForPort:server.port] URLByAppendingPathComponent:[fileURL lastPathComponent]];
+    NSLog(@"%@", finalURL);
     And(success, (finalURL != nil));
     Check(success);
     
