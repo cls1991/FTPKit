@@ -111,9 +111,7 @@ static NSString *cellTableIdentifier = @"cellTableIdentifier";
 - (void) viewDidLoad {
     [super viewDidLoad];
     self.dataSourceList = [[NSMutableArray alloc] initWithCapacity:2];
-    // tag值见nib布局文件的定义
-    UITableView *tableView = (id)[self.view viewWithTag: 999];
-    [tableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
+    [self.ftpNewItemTableView registerClass:[FTPConfigTableViewCell class] forCellReuseIdentifier:cellTableIdentifier];
     
     // 从plist文件加载资源
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FTPDefaultItems" ofType:@"plist"];
