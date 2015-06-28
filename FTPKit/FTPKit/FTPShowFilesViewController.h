@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTPServerModel.h"
 
 @interface FTPShowFilesViewController : UIViewController
-- (void) initWithString : (NSString *)textString;
+- (void) initTitleWith : (NSString *)dirString ServerDataWith : (FTPServerModel *)model;
 @end
