@@ -12,4 +12,5 @@
 @property (copy, nonatomic) NSString *fileNameValue;
 @property (copy, nonatomic) NSString *fileSizeValue;
 @property (copy, nonatomic) NSString *fileCreateTimeValue;
+@property (copy, nonatomic) NSString *fileTypeValue;
 @end

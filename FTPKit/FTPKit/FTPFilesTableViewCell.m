@@ -17,13 +17,13 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self){
-        CGRect _fileNameRect = CGRectMake(0, 0, 80, 150);
+        CGRect _fileNameRect = CGRectMake(10, 5, 80, 15);
         _fileNameLabel = [[UILabel alloc] initWithFrame:_fileNameRect];
         [self.contentView addSubview:_fileNameLabel];
-        CGRect _fileSizeRect = CGRectMake(90, 0, 40, 150);
+        CGRect _fileSizeRect = CGRectMake(90, 5, 40, 15);
         _fileSizeLabel = [[UILabel alloc] initWithFrame:_fileSizeRect];
         [self.contentView addSubview:_fileSizeLabel];
-        CGRect _fileCreateTimeRect = CGRectMake(140, 0, 250, 150);
+        CGRect _fileCreateTimeRect = CGRectMake(140, 5, 250, 15);
         _fileCreateTimeLabel = [[UILabel alloc] initWithFrame:_fileCreateTimeRect];
         [self.contentView addSubview:_fileCreateTimeLabel];
     }
@@ -49,6 +49,12 @@
     if (![fileCreateTimeValue isEqualToString:_fileCreateTimeValue]) {
         _fileCreateTimeValue = [fileCreateTimeValue copy];
         _fileCreateTimeLabel.text = _fileCreateTimeValue;
+    }
+}
+
+-(void)setFileTypeValue:(NSString *)fileTypeValue{
+    if (![fileTypeValue isEqualToString:_fileTypeValue]) {
+        _fileTypeValue = [fileTypeValue copy];
     }
 }
 
