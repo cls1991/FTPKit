@@ -32,6 +32,7 @@ static NSString *dataPlist = @"FTPServerData.plist";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.index = -1;
     self.myFTPServers = [[NSMutableArray alloc] initWithCapacity:10];
     if ([self isFileExist:dataPlist]) {
@@ -89,6 +90,7 @@ static NSString *dataPlist = @"FTPServerData.plist";
 -(void) modifyObject: (FTPServerModel *)modelData {
     if (self.index != -1) {
         [self.myFTPServers replaceObjectAtIndex:self.index withObject:modelData];
+        [self saveDataToFile];
     }
 }
 
@@ -157,7 +159,7 @@ static NSString *dataPlist = @"FTPServerData.plist";
     static NSString *myViewIndentifier = @"FTPShowFilesViewController";
     FTPShowFilesViewController *showFilesViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
     FTPServerModel *model = [self.myFTPServers objectAtIndex:indexPath.row];
-    [showFilesViewController initWithString:model.serverName];
+    [showFilesViewController initTitleWith:@"/data" ServerDataWith:model];
     [self.navigationController pushViewController:showFilesViewController animated:true];
 }
 
@@ -166,7 +168,6 @@ static NSString *dataPlist = @"FTPServerData.plist";
     NSIndexPath *indexPath = [self.serverTableItems indexPathForRowAtPoint:location];
     if (!indexPath) return;
     self.index = indexPath.row;
-    NSLog(@"zz--%ld", (long)self.index);
     FTPServerModel *model = [self.myFTPServers objectAtIndex:indexPath.row];
     static NSString *myViewIndentifier = @"FTPModifyViewController";
     FTPModifyViewController *modifyViewController = [self.storyboard instantiateViewControllerWithIdentifier:myViewIndentifier];
