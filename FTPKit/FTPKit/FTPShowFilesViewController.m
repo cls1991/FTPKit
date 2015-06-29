@@ -39,17 +39,20 @@ static NSString *slashString = @"/";
     return _server;
 }
 -(void)initTitleWith:(NSString *)dirString ServerDataWith:(FTPServerModel *)model{
-    self.dirString = [NSMutableString stringWithString:dirString];
     self.model = model;
     // 获取ftp服务器的IP地址
     NSRange range = [self.model.serverAddress rangeOfString:slashString];
     if (range.location != NSNotFound) {
         self.ip = [self.model.serverAddress substringToIndex:range.location];
         self.dirString = [NSMutableString stringWithString:[self.model.serverAddress substringFromIndex:range.location]];
-        self.title = [dirString copy];
-        self.url = [NSMutableString stringWithString:self.ip];
-        [self.url appendString:dirString];
     }
+    else {
+        self.ip =self.model.serverAddress;
+        self.dirString = [NSMutableString stringWithString:slashString];
+    }
+    self.title = [self.dirString copy];
+    self.url = [NSMutableString stringWithString:self.ip];
+    [self.url appendString:self.dirString];
 }
 -(void)backToLastDirectory{
     // 根目录, 不做任何处理

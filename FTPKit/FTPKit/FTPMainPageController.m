@@ -105,7 +105,7 @@ static NSString *dataPlist = @"FTPServerData.plist";
 - (void) modifyServer: (NSNotification *) aNotification{
     // 测试消息通知功能是否正常
     FTPServerModel *model = [aNotification object];
-    [model logObject];
+//    [model logObject];
     [self modifyObject:model];
     [self reloadTableView];
 }
