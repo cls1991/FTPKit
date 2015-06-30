@@ -25,6 +25,7 @@
 		868526BC1B08BF3F00292304 /* FTPServersListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 868526BB1B08BF3F00292304 /* FTPServersListViewCell.m */; };
 		868526BE1B08D1C300292304 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 868526BD1B08D1C300292304 /* Contents.json */; };
 		868526C01B08D1D300292304 /* modify.png in Resources */ = {isa = PBXBuildFile; fileRef = 868526BF1B08D1D300292304 /* modify.png */; };
+		86E6628E1B42EF1A00C9E164 /* FTPFileContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6628D1B42EF1A00C9E164 /* FTPFileContentViewController.m */; };
 		86FFA6241B3FF79900FF7F99 /* FTPFilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FFA6231B3FF79900FF7F99 /* FTPFilesTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		868526BB1B08BF3F00292304 /* FTPServersListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPServersListViewCell.m; sourceTree = "<group>"; };
 		868526BD1B08D1C300292304 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Contents.json; path = Images.xcassets/AppIcon.appiconset/Contents.json; sourceTree = "<group>"; };
 		868526BF1B08D1D300292304 /* modify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = modify.png; path = Images.xcassets/AppIcon.appiconset/modify.png; sourceTree = "<group>"; };
+		86E6628C1B42EF1A00C9E164 /* FTPFileContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPFileContentViewController.h; sourceTree = "<group>"; };
+		86E6628D1B42EF1A00C9E164 /* FTPFileContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPFileContentViewController.m; sourceTree = "<group>"; };
 		86FFA6221B3FF79900FF7F99 /* FTPFilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPFilesTableViewCell.h; sourceTree = "<group>"; };
 		86FFA6231B3FF79900FF7F99 /* FTPFilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPFilesTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +145,8 @@
 				868526BB1B08BF3F00292304 /* FTPServersListViewCell.m */,
 				86FFA6221B3FF79900FF7F99 /* FTPFilesTableViewCell.h */,
 				86FFA6231B3FF79900FF7F99 /* FTPFilesTableViewCell.m */,
+				86E6628C1B42EF1A00C9E164 /* FTPFileContentViewController.h */,
+				86E6628D1B42EF1A00C9E164 /* FTPFileContentViewController.m */,
 			);
 			path = FTPKit;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 				867A1BCC1AFCFA5000CB64AF /* main.m in Sources */,
 				8661031E1AFF991800CAA7FF /* FTPServerModel.m in Sources */,
 				8642778D1AFF1CB600F7D131 /* FTPShowFilesViewController.m in Sources */,
+				86E6628E1B42EF1A00C9E164 /* FTPFileContentViewController.m in Sources */,
 				868526BC1B08BF3F00292304 /* FTPServersListViewCell.m in Sources */,
 				8661031C1AFF62AA00CAA7FF /* FTPConfigTableViewCell.m in Sources */,
 			);
