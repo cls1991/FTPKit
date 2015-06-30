@@ -20,7 +20,7 @@
 @property (strong, nonatomic) FMServer * server;
 @property (strong, nonatomic) NSArray *filesList;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) NSString *tmpDirectory;
 @end
 
 static NSString *ftpFilesTableViewCellIdentifier = @"ftpFilesTableViewCellIdentifier";
@@ -28,6 +28,7 @@ static NSString *slashString = @"/";
 @implementation FTPShowFilesViewController
 @synthesize man=_man;
 @synthesize server=_server;
+@synthesize tmpDirectory=_tmpDirectory;
 
 - (FTPManager *)man {
     if (!_man) _man = [[FTPManager alloc] init];
@@ -37,6 +38,10 @@ static NSString *slashString = @"/";
 - (FMServer *)server {
     if (!_server) _server = [FMServer serverWithDestination:self.model.serverAddress username:self.model.loginUsername password:self.model.loginPasswd];
     return _server;
+}
+- (NSString *)tmpDirectory {
+    if (!_tmpDirectory) _tmpDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    return _tmpDirectory;
 }
 -(void)initTitleWith:(NSString *)dirString ServerDataWith:(FTPServerModel *)model{
     self.model = model;
@@ -140,10 +145,21 @@ static NSString *slashString = @"/";
     // 区分文件和目录
     NSNumber *n = [itemDict objectForKey:(id)kCFFTPResourceType];
     const int fileType = n.intValue;
+    // 如果是单个文件
     if (fileType == 8) {
-        // TODO: 读取文件内容
-        NSLog(@"读取文件内容!!!");
+        /*
+         这里采取临时下载, 读取文件内容之后. 删除临时文件
+         特殊说明: 若文件大小超过1KB, 直接提示文件过大, 无法预览, 用户可以下载后, 自己处理文件
+         */
+//        NSLog(@"读取文件内容!!!");
+        NSLog(@"%d", [self.man downloadFile:itemDict[@"kCFFTPResourceName"] toDirectory:[NSURL URLWithString:self.tmpDirectory] fromServer:self.server]);
+        NSString *file = [self.tmpDirectory stringByAppendingPathComponent:itemDict[@"kCFFTPResourceName"]];
+//        NSLog(@"打开文件%@", [file copy]);
+        NSLog(@"%@", [NSString stringWithContentsOfFile:[file copy] encoding:NSUTF8StringEncoding error:nil]);
+        [[NSFileManager defaultManager] removeItemAtPath:[file copy] error:nil];
+        
     }
+    // 如果是目录
     else if (fileType == 4) {
         [self enterDirectory:itemDict[@"kCFFTPResourceName"]];
     }
