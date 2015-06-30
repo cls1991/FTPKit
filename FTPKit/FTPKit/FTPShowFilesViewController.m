@@ -7,6 +7,7 @@
 //
 
 #import "FTPShowFilesViewController.h"
+#import "FTPFileContentViewController.h"
 #import "FTPFilesTableViewCell.h"
 #import "FTPManager.h"
 
@@ -25,6 +26,7 @@
 
 static NSString *ftpFilesTableViewCellIdentifier = @"ftpFilesTableViewCellIdentifier";
 static NSString *slashString = @"/";
+static NSString *myFileContentViewControlIdentifier = @"FTPFileContentViewController";
 @implementation FTPShowFilesViewController
 @synthesize man=_man;
 @synthesize server=_server;
@@ -152,11 +154,28 @@ static NSString *slashString = @"/";
          特殊说明: 若文件大小超过1KB, 直接提示文件过大, 无法预览, 用户可以下载后, 自己处理文件
          */
 //        NSLog(@"读取文件内容!!!");
-        NSLog(@"%d", [self.man downloadFile:itemDict[@"kCFFTPResourceName"] toDirectory:[NSURL URLWithString:self.tmpDirectory] fromServer:self.server]);
-        NSString *file = [self.tmpDirectory stringByAppendingPathComponent:itemDict[@"kCFFTPResourceName"]];
-//        NSLog(@"打开文件%@", [file copy]);
-        NSLog(@"%@", [NSString stringWithContentsOfFile:[file copy] encoding:NSUTF8StringEncoding error:nil]);
-        [[NSFileManager defaultManager] removeItemAtPath:[file copy] error:nil];
+        // 加入文件大小判断
+        NSNumber *length = [itemDict objectForKey:(id)kCFFTPResourceSize];
+        const int fileSize = length.intValue;
+        if (fileSize > 1024) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"预览提醒" message:@"文件大小超过1KB, 是否下载?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+                // 下载文件
+                NSLog(@"%d", [self.man downloadFile:itemDict[@"kCFFTPResourceName"] toDirectory:[NSURL URLWithString:self.tmpDirectory] fromServer:self.server]);
+            }];
+            UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"Cancle" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction *action) {
+            }];
+            [alert addAction:okAction];
+            [alert addAction:cancleAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else {
+            // TODO: 预览文件
+            NSLog(@"%d", [self.man downloadFile:itemDict[@"kCFFTPResourceName"] toDirectory:[NSURL URLWithString:self.tmpDirectory] fromServer:self.server]);
+            FTPFileContentViewController *fileContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:myFileContentViewControlIdentifier];
+            [fileContentViewController setTitle:itemDict[@"kCFFTPResourceName"]];
+            [self.navigationController pushViewController:fileContentViewController animated:YES];
+        }
         
     }
     // 如果是目录
