@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FTPFileChooserViewController : UIViewController
+@interface FTPFileChooserViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

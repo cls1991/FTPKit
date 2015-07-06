@@ -9,6 +9,7 @@
 #import "FTPShowFilesViewController.h"
 #import "FTPFileContentViewController.h"
 #import "FTPFilesTableViewCell.h"
+#import "FTPFileChooserViewController.h"
 #import "FTPManager.h"
 
 @interface FTPShowFilesViewController()
@@ -27,6 +28,7 @@
 static NSString *ftpFilesTableViewCellIdentifier = @"ftpFilesTableViewCellIdentifier";
 static NSString *slashString = @"/";
 static NSString *myFileContentViewControlIdentifier = @"FTPFileContentViewController";
+static NSString *fileChooserViewControllerIdentifier = @"ftpFileChooserViewController";
 @implementation FTPShowFilesViewController
 @synthesize man=_man;
 @synthesize server=_server;
@@ -90,6 +92,12 @@ static NSString *myFileContentViewControlIdentifier = @"FTPFileContentViewContro
     self.filesList = [self.man contentsOfServer:self.server];
     [self reloadTableView];
 }
+-(void)chooseFileOrDirectory{
+    // 文件选择器(目前仅支持文件)
+    FTPFileChooserViewController *fileChooserViewController = [self.storyboard instantiateViewControllerWithIdentifier:fileChooserViewControllerIdentifier];
+    [self.navigationController pushViewController:fileChooserViewController animated:YES];
+}
+
 -(void)reloadTableView{
     [self.tableView reloadData];
 }
@@ -101,6 +109,11 @@ static NSString *myFileContentViewControlIdentifier = @"FTPFileContentViewContro
     myBackButtonItem.target = self;
     myBackButtonItem.action = @selector(backToLastDirectory);
     self.navigationItem.leftBarButtonItem = myBackButtonItem;
+    UIBarButtonItem *myUpLoadButtonItem = [[UIBarButtonItem alloc] init];
+    myUpLoadButtonItem.title = @"上传";
+    myUpLoadButtonItem.target = self;
+    myUpLoadButtonItem.action = @selector(chooseFileOrDirectory);
+    self.navigationItem.rightBarButtonItem = myUpLoadButtonItem;
     
     // 拉取服务器上的文件目录
     self.filesList = [self.man contentsOfServer:self.server];
