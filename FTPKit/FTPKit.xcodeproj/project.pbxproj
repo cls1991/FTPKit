@@ -16,6 +16,7 @@
 		866103241B03AF9F00CAA7FF /* FTPDefaultItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 866103231B03AF9F00CAA7FF /* FTPDefaultItems.plist */; };
 		866C65DD1B37C47100B55756 /* FTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 866C65DB1B37C47100B55756 /* FTPManager.m */; };
 		866C65DF1B37C67900B55756 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 866C65DE1B37C67900B55756 /* CFNetwork.framework */; };
+		8675C2DD1B4AD8F800555A51 /* FTPFileChooserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8675C2DC1B4AD8F800555A51 /* FTPFileChooserViewController.m */; };
 		867A1BCC1AFCFA5000CB64AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BCB1AFCFA5000CB64AF /* main.m */; };
 		867A1BCF1AFCFA5000CB64AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BCE1AFCFA5000CB64AF /* AppDelegate.m */; };
 		867A1BD51AFCFA5000CB64AF /* FTPMainPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867A1BD41AFCFA5000CB64AF /* FTPMainPageController.m */; };
@@ -55,6 +56,8 @@
 		866C65DA1B37C47100B55756 /* FTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPManager.h; sourceTree = "<group>"; };
 		866C65DB1B37C47100B55756 /* FTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPManager.m; sourceTree = "<group>"; };
 		866C65DE1B37C67900B55756 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8675C2DB1B4AD8F800555A51 /* FTPFileChooserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPFileChooserViewController.h; sourceTree = "<group>"; };
+		8675C2DC1B4AD8F800555A51 /* FTPFileChooserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPFileChooserViewController.m; sourceTree = "<group>"; };
 		867A1BC61AFCFA5000CB64AF /* FTPKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FTPKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		867A1BCA1AFCFA5000CB64AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		867A1BCB1AFCFA5000CB64AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 				86FFA6231B3FF79900FF7F99 /* FTPFilesTableViewCell.m */,
 				86E6628C1B42EF1A00C9E164 /* FTPFileContentViewController.h */,
 				86E6628D1B42EF1A00C9E164 /* FTPFileContentViewController.m */,
+				8675C2DB1B4AD8F800555A51 /* FTPFileChooserViewController.h */,
+				8675C2DC1B4AD8F800555A51 /* FTPFileChooserViewController.m */,
 			);
 			path = FTPKit;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				86E6628E1B42EF1A00C9E164 /* FTPFileContentViewController.m in Sources */,
 				868526BC1B08BF3F00292304 /* FTPServersListViewCell.m in Sources */,
 				8661031C1AFF62AA00CAA7FF /* FTPConfigTableViewCell.m in Sources */,
+				8675C2DD1B4AD8F800555A51 /* FTPFileChooserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

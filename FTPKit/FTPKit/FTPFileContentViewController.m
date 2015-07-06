@@ -21,13 +21,15 @@
     return _tmpDirectory;
 }
 - (void)backAction {
-    NSLog(@"back!!!");
+//    NSLog(@"back!!!");
     NSString *file = [self.tmpDirectory stringByAppendingPathComponent:self.title];
     [[NSFileManager defaultManager] removeItemAtPath:[file copy] error:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)downLoadFileAction{
-    NSLog(@"download!!!");
+//    NSLog(@"download!!!");
+    // TODO: 添加下载交互界面
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)viewDidLoad {
