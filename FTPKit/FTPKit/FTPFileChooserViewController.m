@@ -28,7 +28,7 @@ static NSString *cellIdentifier = @"fileChooserTableViewCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    [cell setText:@"sasasa"];
+    [cell setText:[self.fileLists objectAtIndex:indexPath.row]];
     return cell;
 }
 - (void)viewDidLoad {
