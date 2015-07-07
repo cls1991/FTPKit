@@ -13,16 +13,16 @@
 #import "FTPManager.h"
 
 @interface FTPShowFilesViewController()
-@property (strong, nonatomic) NSString *ip;
+@property (copy, nonatomic) NSString *ip;
 @property (strong, nonatomic) NSMutableString *dirString;
 @property (strong, nonatomic) NSMutableString *url;
 @property (strong, nonatomic) FTPFilesTableViewCell *ftpFilesTableViewCell;
 @property (strong, nonatomic) FTPServerModel *model;
 @property (strong, nonatomic) FTPManager *man;
 @property (strong, nonatomic) FMServer * server;
-@property (strong, nonatomic) NSArray *filesList;
+@property (copy, nonatomic) NSArray *filesList;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSString *tmpDirectory;
+@property (copy, nonatomic) NSString *tmpDirectory;
 @end
 
 static NSString *ftpFilesTableViewCellIdentifier = @"ftpFilesTableViewCellIdentifier";
@@ -120,6 +120,18 @@ static NSString *fileChooserViewControllerIdentifier = @"ftpFileChooserViewContr
 
     // 加载自定义cell
     [self.tableView registerClass:[FTPFilesTableViewCell class] forCellReuseIdentifier:ftpFilesTableViewCellIdentifier];
+    
+    // 添加消息监控
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadFile:) name:@"uploadFile" object:nil];
+}
+- (void) uploadFile: (NSNotification *) aNotification{
+    // 上传文件
+    NSString *filePath = [aNotification object];
+//    NSLog(@"%@", filePath);
+    [self.man uploadFile:[NSURL URLWithString:filePath] toServer:self.server];
+    // 实时刷新数据
+    self.filesList = [self.man contentsOfServer:self.server];
+    [self reloadTableView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -166,7 +178,6 @@ static NSString *fileChooserViewControllerIdentifier = @"ftpFileChooserViewContr
          这里采取临时下载, 读取文件内容之后. 删除临时文件
          特殊说明: 若文件大小超过1KB, 直接提示文件过大, 无法预览, 用户可以下载后, 自己处理文件
          */
-//        NSLog(@"读取文件内容!!!");
         // 加入文件大小判断
         NSNumber *length = [itemDict objectForKey:(id)kCFFTPResourceSize];
         const int fileSize = length.intValue;
@@ -183,13 +194,13 @@ static NSString *fileChooserViewControllerIdentifier = @"ftpFileChooserViewContr
             [self presentViewController:alert animated:YES completion:nil];
         }
         else {
-            // TODO: 预览文件
+            // 预览文件(目前仅支持简单文件的预览)
+            // TODO: 添加对复杂文件的预览, 第三方应用
             NSLog(@"%d", [self.man downloadFile:itemDict[@"kCFFTPResourceName"] toDirectory:[NSURL URLWithString:self.tmpDirectory] fromServer:self.server]);
             FTPFileContentViewController *fileContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:myFileContentViewControlIdentifier];
             [fileContentViewController setTitle:itemDict[@"kCFFTPResourceName"]];
             [self.navigationController pushViewController:fileContentViewController animated:YES];
         }
-        
     }
     // 如果是目录
     else if (fileType == 4) {
