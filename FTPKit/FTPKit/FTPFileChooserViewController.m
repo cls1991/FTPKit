@@ -42,17 +42,17 @@ static NSString *cellIdentifier = @"fileChooserTableViewCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *itemDict = [self.fileLists objectAtIndex:indexPath.row];
     // 区分文件和目录
-    NSNumber *n = [itemDict objectForKey:(id)NSFileType];
-    const int fileType = n.intValue;
-//    NSLog(@"%d", fileType);
     // 若为文件
-    if (fileType == 0) {
+    if ([NSFileTypeRegular isEqualToString:itemDict[@"NSFileType"]]) {
         NSMutableString *filePath = [NSMutableString stringWithString:self.tmpDirectory];
         [filePath appendString:self.dirString];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadFile" object:[filePath stringByAppendingPathComponent:itemDict[@"NSFileName"]]];
         [self.navigationController popViewControllerAnimated:true];
     }
-    // TODO: 处理目录
+    // 处理目录
+    else if ([NSFileTypeDirectory isEqualToString:itemDict[@"NSFileType"]]) {
+        [self enterDirectory:itemDict[@"NSFileName"]];
+    }
 }
 -(void)reloadTableView{
     [self.tableview reloadData];
@@ -146,6 +146,9 @@ static NSString *cellIdentifier = @"fileChooserTableViewCell";
     if (![self.dirString isEqualToString:slashString]) {
         [finalPath appendString:self.dirString];
     }
+    // 测试数据, 建立一个目录
+    [fileManager createDirectoryAtPath:[self.tmpDirectory stringByAppendingPathComponent:@"TestDiretory"] withIntermediateDirectories:YES attributes:nil error:&error];
+    
     NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:finalPath error:&error];
     NSMutableArray *tmp = [[NSMutableArray alloc] initWithCapacity:fileArray.count];
     for (NSString *fileName in fileArray) {
