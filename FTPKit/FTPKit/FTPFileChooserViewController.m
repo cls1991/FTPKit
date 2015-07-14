@@ -147,7 +147,7 @@ static NSString *cellIdentifier = @"fileChooserTableViewCell";
         [finalPath appendString:self.dirString];
     }
     // 测试数据, 建立一个目录
-    [fileManager createDirectoryAtPath:[self.tmpDirectory stringByAppendingPathComponent:@"TestDiretory"] withIntermediateDirectories:YES attributes:nil error:&error];
+//    [fileManager createDirectoryAtPath:[self.tmpDirectory stringByAppendingPathComponent:@"TestDiretory"] withIntermediateDirectories:YES attributes:nil error:&error];
     
     NSArray *fileArray = [fileManager contentsOfDirectoryAtPath:finalPath error:&error];
     NSMutableArray *tmp = [[NSMutableArray alloc] initWithCapacity:fileArray.count];
